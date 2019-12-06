@@ -6,7 +6,7 @@
 /*   By: trobicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 01:39:53 by trobicho          #+#    #+#             */
-/*   Updated: 2019/12/06 05:30:43 by trobicho         ###   ########.fr       */
+/*   Updated: 2019/12/06 05:47:36 by trobicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int			main()
 	info.node.push_back(glm::vec2(0.5, 0.40));
 	*/
 	info.node.push_back(s_node(glm::vec2(0.5, 0.5), 0));
-	info.di = 0.3;
-	info.dk = 0.1;
-	generate_attractor(info, 5000, glm::vec2(0.5, 0.6), 1.5);
+	info.di = 0.08;
+	info.dk = 0.02;
+	generate_attractor(info, 10000, glm::vec2(0.5, 0.6), 1.5);
 	Space_colonisation	space_col(info);
 	Renderer			renderer(space_col, 1000, 1000);
 	renderer.render_loop();

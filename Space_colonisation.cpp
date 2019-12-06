@@ -6,7 +6,7 @@
 /*   By: trobicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 01:42:49 by trobicho          #+#    #+#             */
-/*   Updated: 2019/12/06 05:31:04 by trobicho         ###   ########.fr       */
+/*   Updated: 2019/12/06 05:46:01 by trobicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	Space_colonisation::step()
 void	Space_colonisation::col_one_node(size_t n)
 {
 	std::vector<glm::vec2>	influance;
-	float					d = 0.01;
+	float					d = 0.02;
 
 	for (auto const &a : m_attractor)
 	{
