@@ -6,7 +6,7 @@
 /*   By: trobicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 01:45:13 by trobicho          #+#    #+#             */
-/*   Updated: 2019/12/06 04:33:19 by trobicho         ###   ########.fr       */
+/*   Updated: 2019/12/06 04:44:51 by trobicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	Renderer::check_event()
 			m_quit = 1;
 		if (event.key.keysym.scancode == SDL_SCANCODE_SPACE)
 		{
-			std::cout << "step" << std::endl;
 			m_space_col.step();
 		}
 	}

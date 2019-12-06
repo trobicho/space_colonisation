@@ -6,7 +6,7 @@
 /*   By: trobicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 01:42:49 by trobicho          #+#    #+#             */
-/*   Updated: 2019/12/06 04:32:45 by trobicho         ###   ########.fr       */
+/*   Updated: 2019/12/06 05:31:04 by trobicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,25 @@ void	Space_colonisation::step()
 void	Space_colonisation::col_one_node(size_t n)
 {
 	std::vector<glm::vec2>	influance;
-	float					d = 0.05;
+	float					d = 0.01;
 
 	for (auto const &a : m_attractor)
 	{
-		if (glm::length(a - m_node[n].pos) <= m_di)
+		double	len;
+		bool	accept = true;
+		if ((len = glm::length(a - m_node[n].pos)) <= m_di)
 		{
+			for (int na = 0; na < m_node.size(); ++na)
+			{
+				if (na == n)
+					continue;
+				else if (glm::length(a - m_node[na].pos) < len)
+				{
+					accept = false;
+					break;
+				}
+			}
+			if (accept)
 			influance.push_back(a);
 		}
 	}
