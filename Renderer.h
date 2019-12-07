@@ -6,7 +6,7 @@
 /*   By: trobicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 01:44:48 by trobicho          #+#    #+#             */
-/*   Updated: 2019/12/06 02:57:11 by trobicho         ###   ########.fr       */
+/*   Updated: 2019/12/07 07:16:11 by trobicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <SDL2/SDL.h>
 #include "Space_colonisation.h"
 
-#define NODE_COLOR			0x8D6142
+#define NODE_COLOR			0x9f111c
 #define ATTRACTOR_COLOR		0x527b2d
 
 class	Renderer

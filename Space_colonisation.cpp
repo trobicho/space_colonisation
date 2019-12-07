@@ -6,7 +6,7 @@
 /*   By: trobicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 01:42:49 by trobicho          #+#    #+#             */
-/*   Updated: 2019/12/07 00:21:30 by trobicho         ###   ########.fr       */
+/*   Updated: 2019/12/07 21:03:55 by trobicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	Space_colonisation::step()
 		if (b.has_stop())
 			nb_stop++;
 	}
-	std::cout << "stop: " << nb_stop << "/" << m_branch.size() << std::endl;
+	//std::cout << "stop: " << nb_stop << "/" << m_branch.size() << std::endl;
 	for (auto const &a : m_attractor)
 	{
 		float	min = m_di + 0.1;
