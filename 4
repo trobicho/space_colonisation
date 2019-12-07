@@ -6,7 +6,7 @@
 /*   By: trobicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 01:39:53 by trobicho          #+#    #+#             */
-/*   Updated: 2019/12/07 00:52:31 by trobicho         ###   ########.fr       */
+/*   Updated: 2019/12/07 00:15:35 by trobicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,14 @@ int			main()
 
 	info.attractor.reserve(2000);
 	info.branch.reserve(2000);
-	/*
 	info.branch.push_back(Branch(glm::vec2(0.5, 0.0)));
 	info.branch.push_back(Branch(glm::vec2(0.5, 0.2), 0));
 	info.branch.push_back(Branch(glm::vec2(0.5, 0.25), 1));
 	info.branch.push_back(Branch(glm::vec2(0.5, 0.3), 2));
-	*/
-	info.branch.push_back(Branch(glm::vec2(0.5, 0.5)));
-	info.di = 0.05;
-	info.dk = 0.02;
-	generate_attractor(info, 10000, glm::vec2(0.5, 0.5), 0.5);
+	info.di = 0.02;
+	info.dk = 0.01;
+	generate_attractor(info, 2000, glm::vec2(0.28, 0.65), 0.5);
+	generate_attractor(info, 5000, glm::vec2(0.35, 0.8), 0.1);
 	Space_colonisation	space_col(info);
 	Renderer			renderer(space_col, 1000, 1000);
 	renderer.render_loop();

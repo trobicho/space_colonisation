@@ -6,7 +6,7 @@
 /*   By: trobicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 01:45:13 by trobicho          #+#    #+#             */
-/*   Updated: 2019/12/06 04:44:51 by trobicho         ###   ########.fr       */
+/*   Updated: 2019/12/07 00:49:58 by trobicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ Renderer::~Renderer()
 
 void	Renderer::space_col_render()
 {
-	std::vector<s_node>		&node = m_space_col.get_node();
+	std::vector<Branch>		&branch = m_space_col.get_branch();
 	std::vector<glm::vec2>	&attractor = m_space_col.get_attractor();
 	glm::vec2				len_att = glm::vec2(pix_size() * 4, pix_size() * 4);
 	glm::vec2				len = glm::vec2(pix_size() * 2, pix_size() * 2);
 
-	for (auto const &n : node)
+	for (auto const &n : branch)
 	{
 		draw_rect(n.pos, len, NODE_COLOR);
-		draw_line(n.pos, node[n.link].pos, NODE_COLOR, 2);
+		draw_line(n.pos, branch[n.link].pos, NODE_COLOR, 1 + (sqrt(n.width) / 2.0));
 	}
 
 	for (auto const &a : attractor)
@@ -133,6 +133,8 @@ void	Renderer::draw_rect(glm::vec2 pos, glm::vec2 l, Uint32 color)
 	int	w = l.x * m_width;
 	int	h = l.y * m_height;
 
+	pos.x -= (w / 2) * pix_size();
+	pos.y -= (h / 2) * pix_size();
 	for (int y = 0; y < h; y++)
 	{
 		for (int x = 0; x < w; x++)
