@@ -6,7 +6,7 @@
 /*   By: trobicho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 01:39:53 by trobicho          #+#    #+#             */
-/*   Updated: 2019/12/07 21:18:48 by trobicho         ###   ########.fr       */
+/*   Updated: 2019/12/08 09:12:07 by trobicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 #include "my_lib.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-
-
+#include <stdexcept>
 
 static void	generate_attractor_on_img(const char *img_file
 				, s_space_col_info &sc_inf, int n)
@@ -29,6 +28,10 @@ static void	generate_attractor_on_img(const char *img_file
 
 	img_buffer = stbi_load(img_file, &w, &h
 					, &channels, 0);
+	if (img_buffer == nullptr)
+	{
+		 throw std::runtime_error("Unable to load the image");
+	}
 	std::cout << "load: " << img_file << " (" << w << ", " << h
 				<< ") " << channels << std::endl;
 	while (nb_att < n)
@@ -65,26 +68,40 @@ static void	generate_attractor(s_space_col_info &sc_inf, int n
 	}
 }
 
-int			main()
+int			main(int ac, char **av)
 {
 	s_space_col_info	info;
 
 	info.attractor.reserve(2000);
 	info.branch.reserve(2000);
-	/*
-	info.branch.push_back(Branch(glm::vec2(0.5, 0.0)));
-	info.branch.push_back(Branch(glm::vec2(0.5, 0.2), 0));
-	info.branch.push_back(Branch(glm::vec2(0.5, 0.25), 1));
-	info.branch.push_back(Branch(glm::vec2(0.5, 0.3), 2));
-	*/
+	if (ac > 1)
+	{
+		try
+		{
+			generate_attractor_on_img(av[1], info, 10000);
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << e.what() << '\n';
+			return (1);
+		}
+	}
+	else
+	{
+		try
+		{
+			generate_attractor_on_img("sp_test.png", info, 5000);
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << e.what() << '\n';
+			return (1);
+		}
+	}
+
 	info.branch.push_back(Branch(glm::vec2(0.5, 0.1)));
 	info.di = 0.020;
 	info.dk = 0.008;
-	/*
-	generate_attractor(info, 40, glm::vec2(0.5, 0.5), 0.35);
-	generate_attractor(info, 50, glm::vec2(0.8, 0.8), 0.10);
-	*/
-	generate_attractor_on_img("./sp_test.png", info, 3000);
 	Space_colonisation	space_col(info);
 	Renderer			renderer(space_col, 1000, 1000);
 	renderer.render_loop();
